@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./vibe2ship_banner.png" alt="Coding Ninjas x Google for Developers VIBE2SHIP Banner" width="600" />
+  <img src="./jansetu_report_page.png" alt="JanSetu Application Interface" width="700" />
 </div>
 
 # **JanSetu 🏙️**
@@ -82,11 +82,6 @@ JanSetu is **not** a complaint box. It is an **autonomous civic operating system
 3. **Live Map & Heatmaps**: Powered by Leaflet showing markers and high-risk zone polygons representing automated spatial clustering.
 4. **CPGRAMS, MyGov & NGO Directory**: Officer portal contains a split-pane layout integrating directories for official public grievance channels (CPGRAMS, MyGov, MoHUA) and NGOs (Janaagraha, Praja Foundation).
 5. **Transparency Ledger**: Chronological, immutable public audit logs containing every ticket step, SLA letter, and AI vision verification verdict.
-
-<div align="center">
-  <h3>JanSetu Visual Interface (Citizen view & India-wide live feed)</h3>
-  <img src="./jansetu_report_page.png" alt="JanSetu Citizen View and Live Reports Split Layout" width="600" />
-</div>
 
 ---
 
