@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+dist/
+dist-ssr/
+
+# Environment — NEVER commit .env (check with: git log --all --full-history -- .env)
+.env
+.env.local
+.env.production
+functions/.env
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# Editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Local test artifacts
+*.local
