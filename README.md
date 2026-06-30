@@ -83,6 +83,11 @@ JanSetu is **not** a complaint box. It is an **autonomous civic operating system
 4. **CPGRAMS, MyGov & NGO Directory**: Officer portal contains a split-pane layout integrating directories for official public grievance channels (CPGRAMS, MyGov, MoHUA) and NGOs (Janaagraha, Praja Foundation).
 5. **Transparency Ledger**: Chronological, immutable public audit logs containing every ticket step, SLA letter, and AI vision verification verdict.
 
+<div align="center">
+  <h3>JanSetu Visual Interface (Citizen view & India-wide live feed)</h3>
+  <img src="./jansetu_report_page.png" alt="JanSetu Citizen View and Live Reports Split Layout" width="600" />
+</div>
+
 ---
 
 ## 📂 **Project Directory Structure**
