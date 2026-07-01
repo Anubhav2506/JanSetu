@@ -3,12 +3,6 @@ import { db } from './firebase';
 
 export async function seedDemoData() {
   try {
-    // 1. Check if we already have demo data to avoid spamming
-    const issuesSnapshot = await getDocs(collection(db, 'issues'));
-    if (issuesSnapshot.size > 2) {
-      return { success: true, message: 'Database already has active reports. Ready for demo.' };
-    }
-
     const batch = writeBatch(db);
 
     // 2. Define Issues
@@ -95,6 +89,66 @@ export async function seedDemoData() {
         language_detected: 'en',
         resolution_image_url: 'https://images.unsplash.com/photo-1515162305285-0293e4767cc2?auto=format&fit=crop&w=300&q=80',
         verification_status: 'verified'
+      },
+      {
+        id: 'demo_issue_jaipur',
+        raw_input: 'C-scheme area me kachra phaila hua hai aur cleaning ward staff 3 din se nahi aaya hai, smell bahut bad hai.',
+        category: 'garbage_dump',
+        severity: 4,
+        location_text: 'C-Scheme, near Central Park, Jaipur',
+        location_coords: { lat: 26.9124, lng: 75.7873 },
+        status: 'open',
+        created_at: Timestamp.fromDate(new Date(Date.now() - 2 * 24 * 60 * 60 * 1000)),
+        sla_deadline: Timestamp.fromDate(new Date(Date.now() + 1 * 24 * 60 * 60 * 1000)),
+        updated_at: Timestamp.fromDate(new Date(Date.now() - 2 * 24 * 60 * 60 * 1000)),
+        cluster_id: null,
+        coi_score: 8.0,
+        escalation_letter_drafted: false,
+        ledger_published: true,
+        reporter_uid: 'demo_reporter_jaipur',
+        zone: 'C-Scheme',
+        infrastructure_type: 'waste',
+        language_detected: 'hi'
+      },
+      {
+        id: 'demo_issue_gurgaon',
+        raw_input: 'Sector 45 intersection road has huge broken surface and deep craters after rains. Vehicles are breaking down.',
+        category: 'road_damage',
+        severity: 5,
+        location_text: 'Sector 45 Circular Road, Gurgaon',
+        location_coords: { lat: 28.4595, lng: 77.0266 },
+        status: 'escalated',
+        created_at: Timestamp.fromDate(new Date(Date.now() - 4 * 24 * 60 * 60 * 1000)),
+        sla_deadline: Timestamp.fromDate(new Date(Date.now() - 3 * 24 * 60 * 60 * 1000)), // breached
+        updated_at: Timestamp.fromDate(new Date(Date.now() - 4 * 24 * 60 * 60 * 1000)),
+        cluster_id: null,
+        coi_score: 9.0,
+        escalation_letter_drafted: true,
+        escalation_letter: 'To Nodal Grievance Officer, Gurugram Municipal Corporation (MCG). Subject: SLA Breach Escalation for Road Damage Reference #GG1. Serious road damage at Sector 45 intersection remains unresolved after 96 hours.',
+        ledger_published: true,
+        reporter_uid: 'demo_reporter_gurgaon',
+        zone: 'Sector 45',
+        infrastructure_type: 'road',
+        language_detected: 'en'
+      },
+      {
+        id: 'demo_issue_dehradun',
+        raw_input: 'Rajpur road streetlights are off for last two days. Complete blackout makes it very unsafe for evening commuters.',
+        category: 'streetlight_broken',
+        severity: 3,
+        location_text: 'Rajpur Road, near Mussoorie diversion, Dehradun',
+        location_coords: { lat: 30.3165, lng: 78.0322 },
+        status: 'open',
+        created_at: Timestamp.fromDate(new Date(Date.now() - 1 * 24 * 60 * 60 * 1000)),
+        sla_deadline: Timestamp.fromDate(new Date(Date.now() + 1 * 24 * 60 * 60 * 1000)),
+        updated_at: Timestamp.fromDate(new Date(Date.now() - 1 * 24 * 60 * 60 * 1000)),
+        cluster_id: null,
+        coi_score: 6.5,
+        ledger_published: true,
+        reporter_uid: 'demo_reporter_dehradun',
+        zone: 'Rajpur Road',
+        infrastructure_type: 'electricity',
+        language_detected: 'en'
       }
     ];
 

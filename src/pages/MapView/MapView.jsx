@@ -203,6 +203,33 @@ const MOCK_ISSUES = [
     status: 'open',
     location_text: 'Swargate, Pune',
     location_coords: { lat: 30.7395, lng: 76.7940 }
+  },
+  {
+    id: 'mock_map_jaipur',
+    category: 'garbage_dump',
+    summary: 'C-scheme area me kachra phaila hua hai aur cleaning ward staff 3 din se nahi aaya hai, smell bahut bad hai.',
+    severity: 4,
+    status: 'open',
+    location_text: 'C-Scheme, Jaipur',
+    location_coords: { lat: 26.9124, lng: 75.7873 }
+  },
+  {
+    id: 'mock_map_gurgaon',
+    category: 'road_damage',
+    summary: 'Sector 45 intersection road has huge broken surface and deep craters after rains. Vehicles are breaking down.',
+    severity: 5,
+    status: 'escalated',
+    location_text: 'Sector 45, Gurgaon',
+    location_coords: { lat: 28.4595, lng: 77.0266 }
+  },
+  {
+    id: 'mock_map_dehradun',
+    category: 'streetlight_broken',
+    summary: 'Rajpur road streetlights are off for last two days. Complete blackout makes it very unsafe for evening commuters.',
+    severity: 3,
+    status: 'open',
+    location_text: 'Rajpur Road, Dehradun',
+    location_coords: { lat: 30.3165, lng: 78.0322 }
   }
 ];
 
@@ -270,6 +297,7 @@ export default function MapView() {
   const markersLayerRef = useRef(null);
   const polygonsLayerRef = useRef(null);
   const issueMarkersRef = useRef({}); // Store markers by issue ID for performance
+  const isInitialFitRef = useRef(true); // Track initial map boundary auto-fitting
 
   // Initialize Leaflet map once
   useEffect(() => {
@@ -499,6 +527,21 @@ export default function MapView() {
         console.error('Failed parsing cluster polygon coordinates:', err);
       }
     });
+
+    // Auto-fit map boundaries to include all markers on initial load
+    if (isInitialFitRef.current && filteredIssues.length > 0 && map) {
+      const coords = filteredIssues
+        .map(issue => issue.location_coords)
+        .filter(c => c && c.lat && c.lng)
+        .map(c => L.latLng(c.lat, c.lng));
+      
+      if (coords.length > 0) {
+        const bounds = L.latLngBounds(coords);
+        // Turn off animation on the very first frame to prevent visual zoom jump
+        map.fitBounds(bounds, { padding: [50, 50], animate: false });
+        isInitialFitRef.current = false;
+      }
+    }
 
     // Recalculate container size to resolve any layout/tile glitching
     setTimeout(() => {
